@@ -21,43 +21,43 @@ The lab walks through setting up a **Domain Controller (DC)**, creating users an
 ### **Phase 1: Server and Domain Controller Setup**
 
 #### Step 1: VM Creation
-![VM Creation](screenshots/vm_creation.jpg)
+![VM Creation](screenshots/vm_creation.png)
 This screenshot marks the beginning of the lab setup, where we configure the **DC-01** virtual machine. The VM is provisioned in the **West US 2** region within the **rg-ad-lab** resource group.
 
 #### Step 2: VM Overview
-![VM Overview](screenshots/vm_overview.jpg)
+![VM Overview](screenshots/vm_overview.png)
 The successfully deployed VM’s overview page, confirming **DC-01** is running. The **Private IP (10.0.1.4)** is crucial for networking.
 
 #### Step 3: Accessing the VM
-![Server Manager](screenshots/accessing_vm.jpg)
+![Server Manager](screenshots/accessing_vm.png)
 The **Server Manager** dashboard confirms successful login and administrative access.
 
 #### Step 4: Installation Type
-![Install Type](screenshots/installation_type.jpg)
+![Install Type](screenshots/installation_type.png)
 The **Add Roles and Features Wizard** begins. Default: **Role-based or feature-based installation**.
 
 #### Step 5: Starting Installation
-![AD DS Install](screenshots/starting_installation.jpg)
+![AD DS Install](screenshots/starting_installation.png)
 Installing **Active Directory Domain Services** and management tools.
 
 #### Step 6: Feature Installed
-![AD DS Installed](screenshots/feature_installed.jpg)
+![AD DS Installed](screenshots/feature_installed.png)
 AD DS successfully installed. Next: promote server to Domain Controller.
 
 #### Step 7: Deployment Configuration
-![Deployment Config](screenshots/deployment_configuration.jpg)
+![Deployment Config](screenshots/deployment_configuration.png)
 Creating a new forest, naming the root domain **JayDC.local**.
 
 #### Step 8: Domain Controller Options
-![DC Options](screenshots/domain_controller_options.jpg)
+![DC Options](screenshots/domain_controller_options.png)
 Setting functional levels and **DSRM password**.
 
 #### Step 9: NetBIOS Name
-![NetBIOS](screenshots/netbios_names.jpg)
+![NetBIOS](screenshots/netbios_names.png)
 Wizard generates **NetBIOS name (JAYDC)**.
 
 #### Step 10: Prerequisites Check
-![Prereq Check](screenshots/prereq_check.jpg)
+![Prereq Check](screenshots/prereq_check.png)
 Validation passed — server is ready to be promoted.
 
 #### Step 11: Installation & Promotion
@@ -65,23 +65,23 @@ Validation passed — server is ready to be promoted.
 Clicking **Install** promotes the server to Domain Controller, followed by automatic reboot.
 
 #### Step 12: Diagnostics Check
-![dcdiag](screenshots/dcdiag.jpg)
+![dcdiag](screenshots/dcdiag.png)
 Running **dcdiag** verifies domain controller health.
 
 #### Step 13: Network Verification
-![ipconfig](screenshots/network_verification.jpg)
+![ipconfig](screenshots/network_verification.png)
 `ipconfig /all` confirms correct DNS (`127.0.0.1`) and hostname.
 
 #### Step 14: Open ADUC
-![ADUC](screenshots/open_aduc.jpg)
+![ADUC](screenshots/open_aduc.png)
 **Active Directory Users and Computers (ADUC)** shows domain **JayDC.local** is active.
 
 #### Step 15: Create User 1
-![User 1](screenshots/create_user1.jpg)
+![User 1](screenshots/create_user1.png)
 Creating **Jayson Zatarain** (`HelpdeskUser@JayDC.local`) in **IT/HelpDesk OU**.
 
 #### Step 16: Create User 2
-![User 2](screenshots/create_user2.jpg)
+![User 2](screenshots/create_user2.png)
 Creating second user **Lockout Lab** in default **Users container**.
 
 ---
@@ -89,15 +89,15 @@ Creating second user **Lockout Lab** in default **Users container**.
 ### **Phase 2: Deploying a Client VM and Joining the Domain**
 
 #### Step 17: Deploy Client-01 VM
-![Client VM](screenshots/client_vm_deploy.jpg)
+![Client VM](screenshots/client_vm_deploy.png)
 Deploying **client-01** running **Windows 10 Pro** in **Subnet-Clients**.
 
 #### Step 18: Join the Domain
-![Join Domain](screenshots/join_domain.jpg)
+![Join Domain](screenshots/join_domain.png)
 Client successfully joined domain: **Welcome to JayDC.local**.
 
 #### Step 19: Verify Admin Permissions
-![Admin Check](screenshots/verify_admin_permissions.jpg)
+![Admin Check](screenshots/verify_admin_permissions.png)
 **HelpdeskUser** confirmed as local **Administrator** on client machine.
 
 #### Step 20: Add Domain User to Client
