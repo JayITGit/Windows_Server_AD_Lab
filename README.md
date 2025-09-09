@@ -1,117 +1,43 @@
 # Windows Server Active Directory Lab
 
 ## Overview
-This project demonstrates the deployment and configuration of a **Windows Server 2022 Active Directory Domain Services (AD DS) lab** in Microsoft Azure.
-The lab walks through setting up a **Domain Controller (DC)**, creating users and groups, and joining a **client machine** to the domain.
+This project demonstrates the deployment and configuration of a **Windows Server 2022 Active Directory Domain Services (AD DS) lab** in Microsoft Azure. The goal was to build a functional, small-scale network environment from the ground up, simulating a common IT administrative task.
 
 ## Skills Demonstrated
-- Windows Server 2022 administration
-- Azure VM deployment and management
-- Active Directory installation and domain controller promotion
-- User and group account management
-- DNS and networking verification
-- Client machine domain joining
-- Permissions and troubleshooting
-- Documentation and workflow management
+- **Windows Server Administration:** Hands-on experience with core server roles and management tools.
+- **Azure Cloud Infrastructure:** Deployment and management of virtual machines and network resources (VM, VNet, Subnets).
+- **Active Directory:** Full lifecycle of AD DS, from installation and domain promotion to user and group management.
+- **DNS and Networking:** Configuration and troubleshooting of DNS, IP addresses, and client connectivity.
+- **Troubleshooting:** Utilizing command-line tools like `dcdiag` and `ipconfig` to verify system health and network status.
+- **Documentation:** Creating a clear and professional record of a technical project workflow.
 
 ---
 
-## Lab Guide
+## Lab Walkthrough
 
-### **Phase 1: Server and Domain Controller Setup**
+### **Phase 1: Building the Foundation (Server & Domain Controller)**
 
-#### Step 1: VM Creation
+This phase focused on establishing the core infrastructure for the lab, deploying and configuring the main domain controller.
+
+* **Azure VM Deployment:** I began by deploying a Windows Server 2022 VM (`DC-01`) in Azure, setting up its networking within a dedicated resource group and subnet.
 ![VM Creation](screenshots/vm_creation.png)
-This screenshot marks the beginning of the lab setup, where we configure the **DC-01** virtual machine. The VM is provisioned in the **West US 2** region within the **rg-ad-lab** resource group.
-
-#### Step 2: VM Overview
-![VM Overview](screenshots/vm_overview.png)
-The successfully deployed VM’s overview page, confirming **DC-01** is running. The **Private IP (10.0.1.4)** is crucial for networking.
-
-#### Step 3: Accessing the VM
-![Server Manager](screenshots/accessing_vm.png)
-The **Server Manager** dashboard confirms successful login and administrative access.
-
-#### Step 4: Installation Type
-![Install Type](screenshots/installation_type.png)
-The **Add Roles and Features Wizard** begins. Default: **Role-based or feature-based installation**.
-
-#### Step 5: Starting Installation
-![AD DS Install](screenshots/starting_installation.png)
-Installing **Active Directory Domain Services** and management tools.
-
-#### Step 6: Feature Installed
-![AD DS Installed](screenshots/feature_installed.png)
-AD DS successfully installed. Next: promote server to Domain Controller.
-
-#### Step 7: Deployment Configuration
-![Deployment Config](screenshots/deployment_configuration.png)
-Creating a new forest, naming the root domain **JayDC.local**.
-
-#### Step 8: Domain Controller Options
-![DC Options](screenshots/domain_controller_options.png)
-Setting functional levels and **DSRM password**.
-
-#### Step 9: NetBIOS Name
-![NetBIOS](screenshots/netbios_names.png)
-Wizard generates **NetBIOS name (JAYDC)**.
-
-#### Step 10: Prerequisites Check
-![Prereq Check](screenshots/prereq_check.png)
-Validation passed — server is ready to be promoted.
-
-#### Step 11: Installation & Promotion
-*Not Pictured*
-Clicking **Install** promotes the server to Domain Controller, followed by automatic reboot.
-
-#### Step 12: Diagnostics Check
+* **Active Directory Installation:** After connecting to the VM, I installed the **Active Directory Domain Services** role using the Server Manager. This involved configuring deployment settings, including creating a new forest for the domain `JayDC.local`.
+![Installation Type](screenshots/installation_type.png)
+* **Domain Promotion & Verification:** The server was then promoted to a domain controller. I performed key diagnostic checks with `dcdiag` to confirm the health and functionality of the new domain, and verified the DNS configuration using `ipconfig /all`.
 ![dcdiag](screenshots/dcdiag.png)
-Running **dcdiag** verifies domain controller health.
 
-#### Step 13: Network Verification
-![ipconfig](screenshots/network_verification.png)
-`ipconfig /all` confirms correct DNS (`127.0.0.1`) and hostname.
+### **Phase 2: User Management and Client Integration**
 
-#### Step 14: Open ADUC
-![ADUC](screenshots/open_aduc.png)
-**Active Directory Users and Computers (ADUC)** shows domain **JayDC.local** is active.
+With the core infrastructure in place, this phase demonstrated how to manage users and integrate a client machine into the new domain.
 
-#### Step 15: Create User 1
-![User 1](screenshots/create_user1.png)
-Creating **Jayson Zatarain** (`HelpdeskUser@JayDC.local`) in **IT/HelpDesk OU**.
-
-#### Step 16: Create User 2
-![User 2](screenshots/create_user2.png)
-Creating second user **Lockout Lab** in default **Users container**.
-
----
-
-### **Phase 2: Deploying a Client VM and Joining the Domain**
-
-#### Step 17: Deploy Client-01 VM
-![Client VM](screenshots/client_vm_deploy.png)
-Deploying **client-01** running **Windows 10 Pro** in **Subnet-Clients**.
-
-#### Step 18: Join the Domain
+* **User and Group Creation:** Using the **Active Directory Users and Computers (ADUC)** console, I created two user accounts with different permissions and placed them in relevant OUs to simulate a real-world environment.
+![Create User 1](screenshots/create_user1.png)
+* **Client Deployment and Domain Join:** I deployed a new Windows 10 Pro VM (`client-01`) and successfully joined it to the **`JayDC.local`** domain, proving the client-server trust relationship was established.
 ![Join Domain](screenshots/join_domain.png)
-Client successfully joined domain: **Welcome to JayDC.local**.
-
-#### Step 19: Verify Admin Permissions
-![Admin Check](screenshots/verify_admin_permissions.png)
-**HelpdeskUser** confirmed as local **Administrator** on client machine.
-
-#### Step 20: Add Domain User to Client
-![Add User](screenshots/add_domain_user.png)
-Domain user **Lockout.LabUser** added to local accounts on client, granting access.
+* **Permissions Verification:** The final step was to confirm that a domain user could not only log in to the client machine but also had the correct, pre-defined administrative permissions, a critical security check.
+![Verify Admin Permissions](screenshots/verify_admin_permissions.png)
 
 ---
 
 ## 📖 Key Takeaways
-- Successfully deployed and configured an **Active Directory environment** in Azure.
-- Gained hands-on experience with **user/group management** and **permissions**.
-- Practiced troubleshooting with **diagnostics tools** (`dcdiag`, `ipconfig`).
-- Demonstrated the ability to **document technical workflows** clearly and professionally.
-
----
-
-🔹 This project demonstrates a **real-world IT help desk skill set**, from server deployment to user support.
+This project was an end-to-end demonstration of setting up a foundational network environment. It highlights practical skills in cloud deployment, server administration, and active directory management—all essential for an IT professional.
