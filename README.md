@@ -39,5 +39,5 @@ With the core infrastructure in place, this phase demonstrated how to manage use
 
 ---
 
-## 📖 Key Takeaways
+## Key Takeaways
 This project was an end-to-end demonstration of setting up a foundational network environment. It highlights practical skills in cloud deployment, server administration, and active directory management—all essential for an IT professional.
